@@ -23,6 +23,7 @@ zstyle ':vcs_info:*' enable git
 
 # Load pyenv
 eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
 # Load nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
