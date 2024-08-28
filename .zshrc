@@ -22,7 +22,7 @@ export LSCOLORS=cxgxfxexbxegedabagacad
 export PROMPT='%F{240}[%m] %F{31}%5~ %(?..%F{red}%?) %(!.%F{red}#.%f>) %f'
 
 # Use vim as default editor but keep emacs-style zsh bindings
-export EDITOR='vim'
+export EDITOR='nvim'
 bindkey -e
 
 export RPROMPT=\$vcs_info_msg_0_
