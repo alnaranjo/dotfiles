@@ -5,6 +5,7 @@
 DOTFILES=(
     # ".zshrc"
     ".bashrc"
+    ".tmux.conf"
 )
 
 for dotfile in "${DOTFILES[@]}"; do
