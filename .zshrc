@@ -21,6 +21,11 @@ export CLICOLOR=1
 export LSCOLORS=cxgxfxexbxegedabagacad
 export PROMPT='%F{240}[%m] %F{31}%5~ %(?..%F{red}%?) %(!.%F{red}#.%f>) %f'
 
+# XDG setup
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 # Use vim as default editor but keep emacs-style zsh bindings
 export EDITOR='nvim'
 bindkey -e
@@ -29,16 +34,10 @@ export RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
-# Adds poetry to path
-export PATH="$HOME/.local/bin:$PATH"
-
-# Load pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-
-# Load nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+# Load nvm and completions
+export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 
 # Looad pnpm
@@ -48,10 +47,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-export PATH="/usr/local/mongo/bin:$PATH"
+export GPG_TTY=$(tty)
 
-# XDG setup
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
+# Dsiable Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
 

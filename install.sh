@@ -3,8 +3,8 @@
 # Creates symbolik links in HOME for all DOTFILES
 
 DOTFILES=(
-    # ".zshrc"
-    ".bashrc"
+    ".zshrc"
+    #".bashrc"
     ".tmux.conf"
 )
 
