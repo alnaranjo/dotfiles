@@ -1,12 +1,14 @@
-# Load Git completion
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+# Completion paths
 fpath=(~/.zsh $fpath)
-
-# Load stripe completion
 fpath=(~/.stripe $fpath)
+fpath=(~/.docker/completions $fpath)
+
+# git completions via zstyle
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 
 autoload -Uz compinit && compinit
 
+# VCS info for prompt
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -38,7 +40,6 @@ zstyle ':vcs_info:*' enable git
 export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 
 # Looad pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
