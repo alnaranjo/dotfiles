@@ -16,12 +16,10 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
 alias ls='ls -G'
-alias pn='pnpm'
-alias tx='tmuxinator'
 
 export CLICOLOR=1
 export LSCOLORS=cxgxfxexbxegedabagacad
-export PROMPT='%F{240}[%m] %F{31}%5~ %(?..%F{red}%?) %(!.%F{red}#.%f>) %f'
+export PROMPT='%F{31}%5~ %(?..%F{red}%?) %(!.%F{red}#.%f>) %f'
 
 # XDG setup
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -32,21 +30,27 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export EDITOR='nvim'
 bindkey -e
 
-export RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
-zstyle ':vcs_info:*' enable git
+# export RPROMPT=\$vcs_info_msg_0_
+# zstyle ':vcs_info:git:*' formats '%F{240}V
+# zstyle ':vcs_info:*' enable git
 
 # Load nvm and completions
 export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Looad pnpm
+# Load pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# Load pyenv
+export PYENV_ROOT="$XDG_CONFIG_HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 export GPG_TTY=$(tty)
 
