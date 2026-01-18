@@ -3,9 +3,8 @@
 # Creates symbolik links in HOME for all DOTFILES
 
 DOTFILES=(
-    ".zshrc"
-    #".bashrc"
-    ".tmux.conf"
+    #".zshrc"
+    ".bashrc"
 )
 
 for dotfile in "${DOTFILES[@]}"; do
