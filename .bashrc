@@ -9,6 +9,26 @@ esac
 HISTCONTROL=ignoreboth
 HISTSIZE=200000
 
+C_RESET="\[\033[0m\]"
+C_PATH="\[\033[38;5;31m\]"
+C_RED="\[\033[31m\]"
+
+__bash_prompt() {
+  local ec=$?
+
+  local exit_part=""
+  if [[ $ec -ne 0 ]]; then
+    exit_part="${C_RED}${ec}${C_RESET} "
+  fi
+
+  local suffix=">"
+  if [[ $EUID -eq 0 ]]; then
+    suffix="${C_RED}#${C_RESET}"
+  fi
+
+  PS1="${C_RESET}${C_PATH}\w${C_RESET} ${exit_part}${suffix} ${C_RESET}"
+}
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
@@ -16,7 +36,7 @@ shopt -s checkwinsize
 
 export EDITOR='nvim'
 
-PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
+PROMPT_COMMAND=__bash_prompt
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
