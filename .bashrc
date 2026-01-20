@@ -53,6 +53,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+[[ -r /usr/share/bash-completion/completions/make ]] && . /usr/share/bash-completion/completions/make
 [[ -r "${HOME}/.stripe/stripe-completion.bash" ]] && . "${HOME}/.stripe/stripe-completion.bash"
 [[ -r "${HOME}/.docker/completions/docker.bash" ]] && . "${HOME}/.docker/completions/docker.bash"
 
@@ -61,8 +62,7 @@ export NVM_DIR="${HOME}/.config/nvm"
 [[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
 [[ -s "${NVM_DIR}/bash_completion" ]] && . "${NVM_DIR}/bash_completion"
 
-# gpg
-export GPG_TTY
-GPG_TTY="$(tty)"
-
-export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin
+case ":${PATH}:" in
+  *:"/usr/local/go/bin":*) ;;
+  *) export PATH="$PATH:/usr/local/go/bin" ;;
+esac
