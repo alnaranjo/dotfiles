@@ -6,6 +6,7 @@ setxkbmap us
 
 # monitor mode
 xrandr --output DP-1 --mode 3440x1440 --rate 120
+xset r rate 200 50
 
 # SSH agent
 if ! pgrep -u "$USER" ssh-agent >/dev/null; then
@@ -18,7 +19,7 @@ if ! pgrep -u "$USER" -x gnome-keyring-daemon >/dev/null; then
 fi
 
 # wallpaper
-[ -x "$HOME/.local/bin/fehbg" ] && "$HOME/.local/bin/fehbg"
+[ -x "$HOME/.local/bin/setbg" ] && "$HOME/.local/bin/setbg"
 
 # session
 systemctl --user import-environment DISPLAY XAUTHORITY

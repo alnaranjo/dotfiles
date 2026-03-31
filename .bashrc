@@ -29,7 +29,12 @@ __bash_prompt() {
     suffix="${C_RED}#${C_RESET}"
   fi
 
-  PS1="${C_RESET}${C_PATH}\w${C_RESET} ${exit_part}${suffix} ${C_RESET}"
+  local venv_part=""
+  if [[ -n "${VIRTUAL_ENV:-}" ]]; then
+    venv_part="($(basename "$VIRTUAL_ENV")) "
+  fi
+
+  PS1="${C_RESET}${C_PATH}\w${C_RESET} ${venv_part}${exit_part}${suffix} ${C_RESET}"
 }
 PROMPT_COMMAND=__bash_prompt
 
